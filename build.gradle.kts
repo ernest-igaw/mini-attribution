@@ -8,6 +8,7 @@ plugins {
 
 group = "com.dfinery"
 version = "0.0.1-SNAPSHOT"
+val springCloudAwsVersion: String by extra("3.3.0")
 
 java {
 	toolchain {
@@ -23,6 +24,13 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+	implementation("org.springframework.cloud:spring-cloud-starter-aws")
+	implementation("org.springframework.cloud:spring-cloud-starter-aws-messaging")
+	implementation(platform("io.awspring.cloud:spring-cloud-aws-dependencies:$springCloudAwsVersion"))
+	implementation("io.awspring.cloud:spring-cloud-aws-starter-dynamodb")
+	implementation("io.awspring.cloud:spring-cloud-aws-starter-secrets-manager")
+	implementation("io.awspring.cloud:spring-cloud-aws-starter-sqs")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	runtimeOnly("com.h2database:h2")

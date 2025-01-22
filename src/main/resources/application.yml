@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: mini-attribution
+    version: ${VERSION}
+  cloud:
+    aws:
+      credentials:
+        profile:
+          name: default
+          path: ~/.aws/credentials
+      region:
+        static: ap-northeast-1
+server:
+  port: 8080
