@@ -1,8 +1,10 @@
 package com.dfinery.attribution.dto
 
+import jakarta.validation.constraints.NotBlank
+
 data class AdtouchDTO (
-    val id: String?,
-    val adKey: String,
+    val adKey: String?,
+    @get: NotBlank(message = "AdtouchDTO.trackerId must not be blank")
     val trackerId: String,
-    val createdAt: String
+    val createdAt: String? = null
 )

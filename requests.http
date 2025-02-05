@@ -1,0 +1,31 @@
+### Post Adtouch 1
+POST http://localhost:8080/v1/adtouch/generate
+Content-Type: application/json
+
+{
+  "trackerId": "ABC",
+  "createdAt": "1738654923"
+}
+
+### Post "Bonjour!"
+POST http://localhost:8080/
+Content-Type: application/json
+
+{
+  "text": "Bonjour!"
+}
+
+### Post "Privet!"
+POST http://localhost:8080/
+Content-Type: application/json
+
+{
+  "text": "Privet!"
+}
+
+### Get all the messages
+GET http://localhost:8080/
+
+### Get the message by its id
+@id=1e96047b-de55-4561-88c1-9cbec43fa0f4
+GET http://localhost:8080/{{id}}

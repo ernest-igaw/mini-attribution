@@ -1,9 +1,14 @@
 package com.dfinery.attribution.dto
 
+import jakarta.validation.constraints.NotBlank
+
 data class EventDTO (
-    val id: String?,
+    @get: NotBlank(message = "EventDTO.adId must not be blank")
     val adId: String,
+    @get: NotBlank(message = "EventDTO.eventType must not be blank")
+    val eventType: String,
+    val logId: String?,
+    @get: NotBlank(message = "EventDTO.adKey must not be blank")
     val adKey: String,
-    val trackerId: String,
-    val items: List<String>? = null
+    val items: List<ItemDTO>? = null
 )
