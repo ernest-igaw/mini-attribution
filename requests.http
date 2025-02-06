@@ -1,5 +1,5 @@
-### Post Adtouch 1
-POST http://localhost:8080/v1/adtouch/generate
+### Post Adtouch to generate 1
+POST http://localhost:8080/v1/adtouch
 Content-Type: application/json
 
 {
@@ -7,12 +7,14 @@ Content-Type: application/json
   "createdAt": "1738654923"
 }
 
-### Post "Bonjour!"
-POST http://localhost:8080/
+### Post FirstOpen 1
+POST http://localhost:8080/v1/event
 Content-Type: application/json
 
 {
-  "text": "Bonjour!"
+  "adId": "aksgnsdkjlnbkldngksfdnk",
+  "eventType": "FirstOpen",
+  "adKey": "808080808"
 }
 
 ### Post "Privet!"

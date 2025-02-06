@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: mini-attribution-worker
+    version: ${VERSION}
+  cloud:
+    aws:
+      credentials:
+        profile:
+          name: default
+          path: /Users/ernest/.aws/credentials
+      region:
+        static: ap-northeast-1
+server:
+  port: 80
+variables:
+  adtouch:
+    dynamodb:
+      name: dfn-mini-attribution-adtouch-dev
+  profile:
+    dynamodb:
+      name: dfn-mini-attribution-profile-dev
+  event:
+    firstopen:
+      type: FirstOpen
+      sqs:
+        name: dfn-mini-attribution-event-firstopen-dev
+    purchase:
+      type: Purchase
+      sqs:
+        name: dfn-mini-attribution-event-purchase-dev
