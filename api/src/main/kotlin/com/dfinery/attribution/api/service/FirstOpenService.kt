@@ -2,15 +2,15 @@ package com.dfinery.attribution.api.service
 
 import com.dfinery.attribution.api.message.Sender
 import com.dfinery.attribution.common.dto.EventDTO
-import com.dfinery.attribution.common.entity.Profile
 import com.dfinery.attribution.common.util.datetime.DateTimeUtil
-import com.dfinery.attribution.common.util.uuid.UUIDGenerator.Companion.createRandomStringUUID
+import com.dfinery.attribution.common.util.uuid.UUIDGenerator
+import com.fasterxml.jackson.databind.ObjectMapper
 import mu.KLogging
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 
 @Service
-class FirstOpenService (
+class FirstOpenService(
     val sqsSender: Sender,
     @Value("\${variables.event.firstopen.sqs.name}")
     val firstOpenQueueName: String
@@ -18,20 +18,20 @@ class FirstOpenService (
     companion object : KLogging()
 
     fun generateFirstOpenEvent(eventDTO: EventDTO): EventDTO {
-//        val profileEntity = eventDTO.let {
-//            val firstOpenLogId = it.logId ?: "${DateTimeUtil.getCurrentTimestamp()}:${createRandomStringUUID()}"
-//            val trackerId = adtouchService.retrieveAdtouch(it.adKey)?.trackerId
-//            Profile(it.adId, firstOpenLogId, it.adKey, trackerId)
-//        }
-//
-//        profileRepository.save(profileEntity)
-//        logger.info("Saved profile : $profileEntity")
-
-        return sendSQS(eventDTO)
+        val createdTime = DateTimeUtil.getCurrentTimestamp().toString()
+        val firstOpenDTO = eventDTO.let {
+            EventDTO(
+                it.adId,
+                it.eventType,
+                it.logId ?: "${createdTime}:${UUIDGenerator.createRandomPartitionKey()}",
+                it.adKey
+            )
+        }
+        return sendSQS(firstOpenDTO)
     }
 
     fun sendSQS(eventDTO: EventDTO): EventDTO {
-        val sendResult = sqsSender.send(eventDTO.toString(), firstOpenQueueName)
+        val sendResult = sqsSender.send(ObjectMapper().writeValueAsString(eventDTO), firstOpenQueueName)
         logger.info("Sent message to SQS : $sendResult")
 
         return eventDTO

@@ -1,28 +1,74 @@
-### Post Adtouch to generate 1
+### Post Adtouch 1
 POST http://localhost:8080/v1/adtouch
 Content-Type: application/json
 
 {
   "trackerId": "ABC",
-  "createdAt": "1738654923"
+  "createdAt": "{{$timestamp}}"
 }
+
+### Post Adtouch 2
+POST http://localhost:8080/v1/adtouch
+Content-Type: application/json
+
+{
+  "trackerid": "ABC",
+  "createdat": "{{$timestamp}}"
+}
+
+### Post Adtouch 3
+POST http://localhost:8080/v1/adtouch
+Content-Type: application/json
+
+{
+  "trackerId": "123",
+  "createdAt": "{{$timestamp*1000}}",
+  "poop": "poop"
+}
+
 
 ### Post FirstOpen 1
 POST http://localhost:8080/v1/event
 Content-Type: application/json
 
 {
-  "adId": "aksgnsdkjlnbkldngksfdnk",
+  "adId": "{{$uuid}}",
   "eventType": "FirstOpen",
-  "adKey": "808080808"
+  "adKey": "d84d1417b"
 }
 
-### Post "Privet!"
-POST http://localhost:8080/
+### Post FirstOpen 2
+POST http://localhost:8080/v1/event
 Content-Type: application/json
 
 {
-  "text": "Privet!"
+  "ad_id": "{{$uuid}}",
+  "event_type": "FirstOpen",
+  "ad_key": "808080808"
+}
+
+
+### Post Purchase 1
+POST http://localhost:8080/v1/event
+Content-Type: application/json
+
+{
+  "adId": "8bb5470f-2ace-4b72-a9fb-870c25b2228e",
+  "eventType": "Purchase",
+  "adKey": "d84d1417b",
+  "logId": "{{$timestamp}}:{{$uuid}}",
+  "items": [
+    {
+      "productId": "123",
+      "productName": "1",
+      "productPrice": "100"
+    },
+    {
+      "productId": "124",
+      "productName": "2",
+      "productPrice": "200"
+    }
+  ]
 }
 
 ### Get all the messages

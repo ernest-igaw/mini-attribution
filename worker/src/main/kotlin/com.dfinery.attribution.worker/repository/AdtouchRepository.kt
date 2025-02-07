@@ -50,8 +50,4 @@ class AdtouchRepository(
             throw e
         }
     }
-
-    fun save(adtouch: Adtouch) {
-        table.putItem(adtouch)
-    }
 }

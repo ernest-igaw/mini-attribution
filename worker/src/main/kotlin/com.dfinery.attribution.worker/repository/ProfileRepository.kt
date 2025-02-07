@@ -1,6 +1,7 @@
 package com.dfinery.attribution.worker.repository
 
 import com.dfinery.attribution.common.entity.Profile
+import mu.KLogging
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Repository
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient
@@ -17,6 +18,8 @@ class ProfileRepository(
     @Value("\${variables.profile.dynamodb.name}")
     private val tableName: String
 ) {
+    companion object : KLogging()
+
     private val table: DynamoDbTable<Profile>
         get() = dynamoDbEnhancedClient.table(
             tableName,
@@ -42,8 +45,8 @@ class ProfileRepository(
             table.query(queryEnhancedRequest)
                 .items()
                 .stream()
-                .findFirst()
-                .orElse(null)
+                .collect(java.util.stream.Collectors.toList())
+                .lastOrNull()
         } catch (e: ResourceNotFoundException) {
             null
         } catch (e: NoSuchElementException) {
@@ -53,6 +56,7 @@ class ProfileRepository(
 
     fun save(profile: Profile) {
         table.putItem(profile)
+        logger.info("Saved Profile : $profile")
     }
 
     fun delete(profile: Profile) {

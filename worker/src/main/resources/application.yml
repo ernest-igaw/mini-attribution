@@ -24,7 +24,11 @@ variables:
       type: FirstOpen
       sqs:
         name: dfn-mini-attribution-event-firstopen-dev
+      LBWindows:
+        interval: 3600000
     purchase:
       type: Purchase
       sqs:
         name: dfn-mini-attribution-event-purchase-dev
+  partners:
+    "A:123,B:ABC,C:456"
