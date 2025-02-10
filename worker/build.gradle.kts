@@ -1,6 +1,7 @@
 dependencies {
     implementation(project(":common"))
     implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
     implementation("io.netty:netty-resolver-dns-native-macos:4.1.68.Final:osx-aarch_64")
 }
 

@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service
 
 @Service
 class FirstOpenService(
-    val sqsSender: Sender,
+    private val sqsSender: Sender,
     @Value("\${variables.event.firstopen.sqs.name}")
-    val firstOpenQueueName: String
+    private val firstOpenQueueName: String
 ) {
     companion object : KLogging()
 
@@ -31,7 +31,7 @@ class FirstOpenService(
         return sendSQS(firstOpenDTO)
     }
 
-    fun sendSQS(eventDTO: EventDTO): EventDTO {
+    private fun sendSQS(eventDTO: EventDTO): EventDTO {
         val sendResult = sqsSender.send(ObjectMapper().writeValueAsString(eventDTO), firstOpenQueueName)
         logger.info("Sent message to SQS : $sendResult")
 

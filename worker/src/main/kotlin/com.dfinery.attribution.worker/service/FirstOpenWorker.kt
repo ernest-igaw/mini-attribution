@@ -16,12 +16,12 @@ import org.springframework.web.reactive.function.client.WebClient
 
 @Service
 class FirstOpenWorker(
-    val adtouchRepository: AdtouchRepository,
-    val profileRepository: ProfileRepository,
+    private val adtouchRepository: AdtouchRepository,
+    private val profileRepository: ProfileRepository,
     @Value("\${variables.event.firstopen.LBWindows.interval}")
-    val lbWindowsInterval: Long,
+    private val lbWindowsInterval: Long,
     @Value("\${variables.partners}")
-    val partners: String
+    private val partners: String
 ) {
     companion object : KLogging()
 

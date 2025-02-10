@@ -13,9 +13,9 @@ import org.springframework.web.reactive.function.client.WebClient
 
 @Service
 class PurchaseWorker(
-    val profileRepository: ProfileRepository,
+    private val profileRepository: ProfileRepository,
     @Value("\${variables.partners}")
-    val partners: String
+    private val partners: String
 ) {
     companion object : KLogging()
 

@@ -90,7 +90,3 @@ Content-Type: application/json
     }
   ]
 }
-
-### Get the message by its id
-@id=1e96047b-de55-4561-88c1-9cbec43fa0f4
-GET http://localhost:8080/{{id}}

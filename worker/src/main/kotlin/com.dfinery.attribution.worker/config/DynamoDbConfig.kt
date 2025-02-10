@@ -1,10 +1,10 @@
 package com.dfinery.attribution.worker.config
 
-import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 import io.awspring.cloud.dynamodb.DynamoDbTemplate
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient
 import software.amazon.awssdk.regions.Region
@@ -13,7 +13,7 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient
 @Configuration
 class DynamoDbConfig {
     @Value("\${spring.cloud.aws.region.static}")
-    val region: String? = null
+    private val region: String? = null
 
     private fun credentialsProvider() = DefaultCredentialsProvider.builder().build()
 

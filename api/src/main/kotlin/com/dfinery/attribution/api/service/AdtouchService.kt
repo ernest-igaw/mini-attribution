@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class AdtouchService(
-    val adtouchRepository: AdtouchRepository
+    private val adtouchRepository: AdtouchRepository
 ) {
     companion object : KLogging()
 

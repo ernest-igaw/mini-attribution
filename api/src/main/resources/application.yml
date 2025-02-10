@@ -16,9 +16,6 @@ variables:
   adtouch:
     dynamodb:
       name: dfn-mini-attribution-adtouch-dev
-  profile:
-    dynamodb:
-      name: dfn-mini-attribution-profile-dev
   event:
     firstopen:
       type: FirstOpen
