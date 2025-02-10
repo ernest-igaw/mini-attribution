@@ -19,6 +19,6 @@ class EventController(
     @ResponseStatus(HttpStatus.CREATED)
     fun generateEvent(@RequestBody @Valid eventDTO: EventDTO): ResponseDTO {
         eventService.generateEvent(eventDTO)
-        return ResponseDTO(200, "None")
+        return ResponseDTO(HttpStatus.CREATED.value(), HttpStatus.CREATED.reasonPhrase)
     }
 }

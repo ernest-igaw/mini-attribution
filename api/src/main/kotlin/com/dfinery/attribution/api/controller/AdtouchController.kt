@@ -17,6 +17,6 @@ class AdtouchController(val adtouchService: AdtouchService) {
     @ResponseStatus(HttpStatus.CREATED)
     fun generateAdtouch(@RequestBody @Valid adtouchDTO: AdtouchDTO): ResponseDTO {
         adtouchService.generateAdtouch(adtouchDTO)
-        return ResponseDTO(200, "None")
+        return ResponseDTO(HttpStatus.CREATED.value(), HttpStatus.CREATED.reasonPhrase)
     }
 }

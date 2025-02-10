@@ -2,6 +2,7 @@ package com.dfinery.attribution.api.service
 
 import com.dfinery.attribution.api.message.Sender
 import com.dfinery.attribution.common.dto.EventDTO
+import com.dfinery.attribution.common.exception.AdtouchNotFoundException
 import com.dfinery.attribution.common.util.datetime.DateTimeUtil
 import com.dfinery.attribution.common.util.uuid.UUIDGenerator
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -24,7 +25,7 @@ class FirstOpenService(
                 it.adId,
                 it.eventType,
                 it.logId ?: "${createdTime}:${UUIDGenerator.createRandomPartitionKey()}",
-                it.adKey
+                it.adKey ?: throw AdtouchNotFoundException("The adKey is required for FirstOpen event. $it")
             )
         }
         return sendSQS(firstOpenDTO)

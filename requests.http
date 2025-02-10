@@ -1,4 +1,5 @@
 ### Post Adtouch 1
+// @no-log
 POST http://localhost:8080/v1/adtouch
 Content-Type: application/json
 
@@ -8,6 +9,7 @@ Content-Type: application/json
 }
 
 ### Post Adtouch 2
+// @no-log
 POST http://localhost:8080/v1/adtouch
 Content-Type: application/json
 
@@ -42,9 +44,8 @@ POST http://localhost:8080/v1/event
 Content-Type: application/json
 
 {
-  "ad_id": "{{$uuid}}",
-  "event_type": "FirstOpen",
-  "ad_key": "808080808"
+  "adId": "{{$uuid}}",
+  "eventType": "FirstOpen"
 }
 
 
@@ -55,8 +56,6 @@ Content-Type: application/json
 {
   "adId": "8bb5470f-2ace-4b72-a9fb-870c25b2228e",
   "eventType": "Purchase",
-  "adKey": "d84d1417b",
-  "logId": "{{$timestamp}}:{{$uuid}}",
   "items": [
     {
       "productId": "123",
@@ -71,8 +70,26 @@ Content-Type: application/json
   ]
 }
 
-### Get all the messages
-GET http://localhost:8080/
+### Post Purchase 2
+POST http://localhost:8080/v1/event
+Content-Type: application/json
+
+{
+  "adId": "8bb5470f-2ace-4b72-a9fb-870c25b2228e",
+  "eventType": "Purchase",
+  "items": [
+    {
+      "productId": "123",
+      "productName": "1",
+      "productPrice": "100"
+    },
+    {
+      "productId": "124",
+      "productName": "2",
+      "productPrice": "200"
+    }
+  ]
+}
 
 ### Get the message by its id
 @id=1e96047b-de55-4561-88c1-9cbec43fa0f4

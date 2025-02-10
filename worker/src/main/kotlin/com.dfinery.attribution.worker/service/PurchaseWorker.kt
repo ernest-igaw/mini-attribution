@@ -23,15 +23,7 @@ class PurchaseWorker(
         logger.info("Received Purchase : $payload")
         val adId = payload["adId"].asText()
         val logId = payload["logId"].asText()
-        val adKey = payload["adKey"].asText()
-//        val items = payload["items"].asIterable().map {
-//            ItemDTO(
-//                null,
-//                it["productId"].asText(),
-//                it["productName"].asText(),
-//                it["productPrice"].asText()
-//            )
-//        }
+//        val adKey = payload["adKey"].asText()
         val items = payload["items"].asIterable().joinToString("+") {
             it["productId"].asText()
         }
