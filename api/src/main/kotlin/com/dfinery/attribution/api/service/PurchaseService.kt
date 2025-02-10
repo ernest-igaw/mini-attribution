@@ -18,13 +18,12 @@ class PurchaseService(
 ) {
     companion object : KLogging()
 
-    fun generatePurchaseEvent(eventDTO: EventDTO): EventDTO {
-        val createdTime = DateTimeUtil.getCurrentTimestamp().toString()
+    fun addPurchaseEvent(eventDTO: EventDTO): EventDTO {
         val purchaseEventDTO = eventDTO.let {
             EventDTO(
                 it.adId,
                 it.eventType,
-                it.logId ?: "${createdTime}:${UUIDGenerator.createRandomPartitionKey()}",
+                it.logId ?: "${DateTimeUtil.getCurrentTimestamp()}:${UUIDGenerator.createRandomPartitionKey()}",
                 it.adKey,
                 it.items ?: throw InvalidEventItemException("The items are required for Purchase event. $it")
             )

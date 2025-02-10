@@ -7,3 +7,11 @@ allOpen {
     annotation("jakarta.persistence.MappedSuperclass")
     annotation("jakarta.persistence.Embeddable")
 }
+
+sourceSets {
+    test {
+        java {
+            setSrcDirs(listOf("src/test/intg", "src/test/unit"))
+        }
+    }
+}

@@ -2,6 +2,7 @@ package com.dfinery.attribution.worker.repository
 
 import com.dfinery.attribution.common.entity.Profile
 import mu.KLogging
+import org.jetbrains.annotations.TestOnly
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Repository
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient
@@ -59,7 +60,8 @@ class ProfileRepository(
         logger.info("Saved Profile : $profile")
     }
 
-    fun delete(profile: Profile) {
-        table.deleteItem(profile)
+    @TestOnly
+    fun deleteAllItems() {
+        table.scan().items().forEach { table.deleteItem(it) }
     }
 }

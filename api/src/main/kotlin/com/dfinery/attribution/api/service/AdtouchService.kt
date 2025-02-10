@@ -14,13 +14,13 @@ class AdtouchService(
 ) {
     companion object : KLogging()
 
-    fun generateAdtouch(adtouchDTO: AdtouchDTO): AdtouchDTO {
-        val createdTime = DateTimeUtil.getCurrentTimestamp().toString()
+    fun addAdtouch(adtouchDTO: AdtouchDTO): AdtouchDTO {
         val adtouchEntity = adtouchDTO.let {
             Adtouch(
                 it.adKey ?: UUIDGenerator.createRandomPartitionKey(),
                 it.trackerId,
-                it.createdAt?.takeIf { unixTime -> unixTime.length >= 12 } ?: it.createdAt?.plus("000") ?: createdTime
+                it.createdAt?.takeIf { unixTime -> unixTime.length >= 12 } ?: it.createdAt?.plus("000")
+                ?: DateTimeUtil.getCurrentTimestamp().toString()
             )
         }
 

@@ -18,13 +18,12 @@ class FirstOpenService(
 ) {
     companion object : KLogging()
 
-    fun generateFirstOpenEvent(eventDTO: EventDTO): EventDTO {
-        val createdTime = DateTimeUtil.getCurrentTimestamp().toString()
+    fun addFirstOpenEvent(eventDTO: EventDTO): EventDTO {
         val firstOpenDTO = eventDTO.let {
             EventDTO(
                 it.adId,
                 it.eventType,
-                it.logId ?: "${createdTime}:${UUIDGenerator.createRandomPartitionKey()}",
+                it.logId ?: "${DateTimeUtil.getCurrentTimestamp()}:${UUIDGenerator.createRandomPartitionKey()}",
                 it.adKey ?: throw AdtouchNotFoundException("The adKey is required for FirstOpen event. $it")
             )
         }

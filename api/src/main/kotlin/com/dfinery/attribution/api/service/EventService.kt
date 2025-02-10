@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 
 @Service
-class EventService (
+class EventService(
     private val firstOpenService: FirstOpenService,
     private val purchaseService: PurchaseService,
     @Value("\${variables.event.firstopen.type}")
@@ -14,10 +14,10 @@ class EventService (
     @Value("\${variables.event.purchase.type}")
     private val purchaseEventType: String
 ) {
-    fun generateEvent(eventDTO: EventDTO): EventDTO {
+    fun addEvent(eventDTO: EventDTO): EventDTO {
         return when (eventDTO.eventType) {
-            firstOpenEventType -> firstOpenService.generateFirstOpenEvent(eventDTO)
-            purchaseEventType -> purchaseService.generatePurchaseEvent(eventDTO)
+            firstOpenEventType -> firstOpenService.addFirstOpenEvent(eventDTO)
+            purchaseEventType -> purchaseService.addPurchaseEvent(eventDTO)
             else -> throw InvalidEventTypeException("Invalid event type: ${eventDTO.eventType}")
         }
     }

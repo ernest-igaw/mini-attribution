@@ -17,8 +17,8 @@ class EventController(
 ) {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun generateEvent(@RequestBody @Valid eventDTO: EventDTO): ResponseDTO {
-        eventService.generateEvent(eventDTO)
+    fun addEvent(@RequestBody @Valid eventDTO: EventDTO): ResponseDTO {
+        eventService.addEvent(eventDTO)
         return ResponseDTO(HttpStatus.CREATED.value(), HttpStatus.CREATED.reasonPhrase)
     }
 }

@@ -31,10 +31,10 @@ class FirstOpenWorker(
         val logId = payload["logId"].asText()
         val adKey = payload["adKey"].asText()
 
-        return generateAttribution(adId, logId, adKey)
+        return addAttribution(adId, logId, adKey)
     }
 
-    private fun generateAttribution(adId: String, logId: String, adKey: String): ProfileDTO {
+    private fun addAttribution(adId: String, logId: String, adKey: String): ProfileDTO {
         val adtouch = adtouchRepository.findByAdKey(adKey)
             ?: throw AdtouchNotFoundException("No Adtouch found for the passed in adKey : $adKey")
         logger.info("Retrieved Adtouch : $adtouch")

@@ -1,6 +1,7 @@
 package com.dfinery.attribution.worker.repository
 
 import com.dfinery.attribution.common.entity.Adtouch
+import org.jetbrains.annotations.TestOnly
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Repository
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient
@@ -49,5 +50,10 @@ class AdtouchRepository(
         } catch (e: NoSuchElementException) {
             throw e
         }
+    }
+
+    @TestOnly
+    fun deleteAllItems() {
+        table.scan().items().forEach { table.deleteItem(it) }
     }
 }

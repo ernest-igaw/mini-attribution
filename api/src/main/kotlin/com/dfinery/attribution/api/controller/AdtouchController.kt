@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*
 class AdtouchController(val adtouchService: AdtouchService) {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun generateAdtouch(@RequestBody @Valid adtouchDTO: AdtouchDTO): ResponseDTO {
-        adtouchService.generateAdtouch(adtouchDTO)
+    fun addAdtouch(@RequestBody @Valid adtouchDTO: AdtouchDTO): ResponseDTO {
+        adtouchService.addAdtouch(adtouchDTO)
         return ResponseDTO(HttpStatus.CREATED.value(), HttpStatus.CREATED.reasonPhrase)
     }
 }
