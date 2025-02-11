@@ -53,6 +53,8 @@ class FirstOpenWorker(
     }
 
     private fun postback(profile: Profile): ProfileDTO {
+        profile.trackerId ?: return ProfileDTO(profile.adId, profile.firstOpenLogId, profile.adKey, profile.trackerId)
+
         val webClient = WebClient.builder()
             .baseUrl("http://ci.adbrix.io:5055/api")
             .build()

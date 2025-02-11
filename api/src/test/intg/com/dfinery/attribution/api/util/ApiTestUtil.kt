@@ -1,6 +1,8 @@
 package com.dfinery.attribution.api.util
 
+import com.dfinery.attribution.common.dto.AdtouchDTO
 import com.dfinery.attribution.common.dto.EventDTO
+import com.dfinery.attribution.common.dto.ItemDTO
 import com.dfinery.attribution.common.entity.Adtouch
 import com.dfinery.attribution.common.util.datetime.DateTimeUtil.Companion.getCurrentTimestamp
 import com.dfinery.attribution.common.util.uuid.UUIDGenerator.Companion.createRandomPartitionKey
@@ -33,3 +35,17 @@ fun firstOpenList() = listOf(
         items = null
     ),
 )
+
+fun adtouchDTO(
+    adKey: String?,
+    trackerId: String,
+    createdAt: String?
+) = AdtouchDTO(adKey, trackerId, createdAt)
+
+fun eventDTO(
+    adId: String,
+    eventType: String,
+    logId: String?,
+    adKey: String? = null,
+    items: List<ItemDTO>? = null
+) = EventDTO(adId, eventType, logId, adKey, items)
